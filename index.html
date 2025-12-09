@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Metafísica Arbitraria Experimental – Tetris MAE</title>
+  <style>
+    :root {
+      --bg: #05060a;
+      --panel-bg: rgba(10, 10, 15, 0.88);
+      --accent: #ffd54a;
+      --text: #f5f5f7;
+      --muted: #b0b0c0;
+      --unit: min(5vw, 22px); /* tamaño base de cada bloque */
+      --radius: 4px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #151623 0, #05060a 60%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .scene {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      pointer-events: none; /* tetrominós pueden pasar “detrás” */
+    }
+
+    .panel {
+      max-width: 720px;
+      width: 100%;
+      background: var(--panel-bg);
+      border-radius: 20px;
+      padding: 1.25rem 1.3rem 1.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(12px);
+      pointer-events: auto;
+    }
+
+    @media (min-width: 768px) {
+      .panel {
+        padding: 1.8rem 2rem 2rem;
+        border-radius: 24px;
+      }
+    }
+
+    .kicker {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    h1 {
+      font-size: clamp(1.2rem, 4vw, 1.7rem);
+      line-height: 1.2;
+      margin-bottom: 0.7rem;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .body-text {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #e7e7f2;
+    }
+
+    .body-text p + p {
+      margin-top: 0.7rem;
+    }
+
+    .tag-row {
+      margin-top: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.19);
+      color: var(--muted);
+      backdrop-filter: blur(4px);
+    }
+
+    /* ---------- Tetrominós ---------- */
+
+    .tetromino {
+      position: absolute;
+      width: calc(var(--unit) * 4);
+      height: calc(var(--unit) * 4);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 2px;
+      pointer-events: none;
+      opacity: 0.96;
+      transform: translateY(-30vh);
+      will-change: transform;
+    }
+
+    .cell {
+      width: 100%;
+      height: 100%;
+      border-radius: var(--radius);
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-30vh);
+      }
+      100% {
+        transform: translateY(110vh);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene" id="scene">
+    <div class="overlay">
+      <article class="panel">
+        <div class="kicker">Metafísica Arbitraria Experimental</div>
+        <h1>Vaso Tetris en 7-Eleven, 2025</h1>
+        <p class="subtitle">
+          Nota de campo sobre un objeto cotidiano como discontinuidad en el
+          plano de la atención.
+        </p>
+        <div class="body-text">
+          <p>
+            Objeto cotidiano que sincroniza temporalidades inconexas
+            (1985–2025) y convierte el acto trivial de beber café en una
+            interfaz con el orden simbólico de los bloques que caen. Aquí, la
+            MAE encuentra su laboratorio: un gesto mínimo que condensa historia,
+            consumo, azar objetivo y resonancia personal.
+          </p>
+          <p>
+            El vaso ya no es solo un vaso: es una discontinuidad en el flujo de
+            la experiencia, una pequeña pantalla donde un juego de 8 bits se
+            acopla al capitalismo de conveniencia del siglo XXI. Los tetrominós
+            funcionan como unidades discretas de organización del caos: caen,
+            se encajan o se pierden. El mundo aparece así como un sistema
+            tetris-ficado, donde los huecos, los límites y la gravedad simbólica
+            determinan qué historias pueden ensamblarse.
+          </p>
+          <p>
+            En esta lectura, el Vaso Tetris actúa como talismán temporal: un
+            recordatorio de que los símbolos rebotan entre décadas y aparecen
+            en objetos descartables. La MAE toma nota de estas resonancias:
+            cuando la cultura popular se imprime en cartón encerado para café,
+            lo cotidiano se vuelve un portal discreto a la metafísica.
+          </p>
+        </div>
+        <div class="tag-row">
+          <span class="tag">#FLO926</span>
+          <span class="tag">#Tetris</span>
+          <span class="tag">#ObjetosCotidianos</span>
+          <span class="tag">#AzarObjetivo</span>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <script>
+    // Configuración básica
+    const COLORS = [
+      "#00ffff", // I
+      "#ffff00", // O
+      "#8000ff", // T
+      "#0000ff", // J
+      "#ff7f00", // L
+      "#00ff00", // S
+      "#ff0040" // Z
+    ];
+
+    // Cada tetrominó: lista de [x, y] en una cuadrícula 4x4
+    const SHAPES = {
+      I: [
+        [0, 1],
+        [1, 1],
+        [2, 1],
+        [3, 1]
+      ],
+      O: [
+        [1, 1],
+        [2, 1],
+        [1, 2],
+        [2, 2]
+      ],
+      T: [
+        [1, 1],
+        [0, 2],
+        [1, 2],
+        [2, 2]
+      ],
+      J: [
+        [0, 1],
+        [0, 2],
+        [1, 2],
+        [2, 2]
+      ],
+      L: [
+        [2, 1],
+        [0, 2],
+        [1, 2],
+        [2, 2]
+      ],
+      S: [
+        [1, 1],
+        [2, 1],
+        [0, 2],
+        [1, 2]
+      ],
+      Z: [
+        [0, 1],
+        [1, 1],
+        [1, 2],
+        [2, 2]
+      ]
+    };
+
+    const scene = document.getElementById("scene");
+
+    function randomBetween(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function createTetromino() {
+      const types = Object.keys(SHAPES);
+      const type = types[Math.floor(Math.random() * types.length)];
+      const shape = SHAPES[type];
+      const color = COLORS[types.indexOf(type)];
+
+      const t = document.createElement("div");
+      t.className = "tetromino";
+
+      // Posición horizontal aleatoria (dejando margen)
+      const left = randomBetween(2, 82); // en vw
+      t.style.left = left + "vw";
+
+      // Duración y retraso de la caída
+      const duration = randomBetween(7, 15); // segundos
+      const delay = randomBetween(0, 4);
+
+      t.style.animation = `fall ${duration}s linear ${delay}s 1 forwards`;
+
+      // Crear 16 celdas y colorear solo las del shape
+      for (let y = 0; y < 4; y++) {
+        for (let x = 0; x < 4; x++) {
+          const cell = document.createElement("div");
+          cell.className = "cell";
+
+          const filled = shape.some(
+            (pos) => pos[0] === x && pos[1] === y
+          );
+
+          if (filled) {
+            cell.style.background = color;
+            cell.style.boxShadow =
+              "0 0 10px rgba(255,255,255,0.35), 0 0 18px rgba(0,0,0,0.8)";
+          } else {
+            cell.style.background = "transparent";
+            cell.style.boxShadow = "none";
+          }
+          t.appendChild(cell);
+        }
+      }
+
+      t.addEventListener("animationend", () => {
+        t.remove();
+        // crear otro para mantener flujo constante
+        createTetromino();
+      });
+
+      scene.appendChild(t);
+    }
+
+    // Crear varios al inicio
+    function startRain() {
+      const count = 10; // cuántos al mismo tiempo
+      for (let i = 0; i < count; i++) {
+        setTimeout(createTetromino, i * 400);
+      }
+    }
+
+    // Ajustar tamaño base según alto de pantalla para móviles muy alargados
+    function adjustUnit() {
+      const vh = window.innerHeight;
+      const vw = window.innerWidth;
+      const base = Math.min(vw * 0.05, vh * 0.06, 24);
+      document.documentElement.style.setProperty("--unit", base + "px");
+    }
+
+    window.addEventListener("resize", adjustUnit);
+
+    adjustUnit();
+    startRain();
+  </script>
+</body>
+</html>
