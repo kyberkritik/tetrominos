@@ -115,6 +115,38 @@
       backdrop-filter: blur(4px);
     }
 
+    .tetris-image {
+      float: right;
+      width: clamp(120px, 25vw, 200px);
+      margin: 0 0 1rem 1.2rem;
+      border-radius: 8px;
+      border: 2px solid rgba(255, 213, 74, 0.4);
+      box-shadow: 
+        0 0 15px rgba(255, 213, 74, 0.6),
+        0 0 25px rgba(255, 213, 74, 0.3),
+        0 4px 12px rgba(0, 0, 0, 0.5);
+      filter: contrast(1.3) saturate(1.4) brightness(1.1);
+      transition: all 0.3s ease;
+    }
+
+    .tetris-image:hover {
+      filter: contrast(1.5) saturate(1.6) brightness(1.2);
+      box-shadow: 
+        0 0 20px rgba(255, 213, 74, 0.8),
+        0 0 35px rgba(255, 213, 74, 0.5),
+        0 6px 16px rgba(0, 0, 0, 0.6);
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 600px) {
+      .tetris-image {
+        float: none;
+        display: block;
+        margin: 0 auto 1rem;
+        width: clamp(140px, 50vw, 240px);
+      }
+    }
+
     /* ---------- Tetrominós ---------- */
 
     .tetromino {
@@ -155,6 +187,7 @@
         <div class="kicker">Metafísica Arbitraria Experimental</div>
         <h1>🧩 TETRIS × 7-Eleven como cruce imposible (pero perfectamente real)</h1>
         <div class="body-text">
+          <img src="tetris.jpeg" alt="Vaso Tetris 7-Eleven" class="tetris-image">
           <p>
             La MAE siempre juega con coincidencias arbitrarias que sin embargo producen sentido. Aquí tienes un objeto banal —un vaso de café— convertido en un portal semiótico donde un juego soviético de 1984 se encuentra con la cadena de conveniencia global más ubicua.
           </p>
