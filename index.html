@@ -35,10 +35,14 @@
     }
 
     .scene {
-      position: relative;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      min-height: 100vh;
+      height: 100vh;
       overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
     }
 
     .overlay {
@@ -49,7 +53,8 @@
       align-items: center;
       padding: 2rem 1rem;
       min-height: 100vh;
-      pointer-events: none; /* tetrominós pueden pasar "detrás" */
+      pointer-events: none;
+      z-index: 1;
     }
 
     .panel {
